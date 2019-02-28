@@ -1,15 +1,30 @@
 'use strict';
 
 const Service = require('egg').Service;
-const list = [{ id: 1, title: 'this is blog 1', url: '/blog/1' }, { id: 2, title: 'this is blog 2', url: '/blog/2' }];
 
 class BlogService extends Service {
-  async findByQuery(query, opt) {
-    return list;
-  }
-  async findById(id) {
-    //   const
-  }
+	async newAndSave(blog) {
+		const { app } = this;
+		const result = await app.mysql.insert('blog', blog);
+		const insertSuccess = result.affectedRows === 1;
+		return insertSuccess;
+	}
+	async findByQuery() {
+		const { app } = this;
+		const list = await app.mysql.select('blog', {
+			// where: query,
+			columns: [ 'id', 'title' ],
+			orders: [[ 't_create', 'desc' ], [ 'id', 'desc' ]],
+			limit: 10, // 返回数据量
+			offset: 0, // 数据偏移量
+		});
+		return list;
+	}
+	async findById(id) {
+		const { app } = this;
+		const blog = await app.mysql.get('blog', { id });
+		return blog;
+	}
 }
 
 module.exports = BlogService;

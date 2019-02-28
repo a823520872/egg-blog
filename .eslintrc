@@ -5,6 +5,6 @@
 		"generator-star-spacing": "off",
 		"babel/generator-star-spacing": "off",
 		"linebreak-style": ["error", "windows"],
-		"indent": ["error", 2]
+		"indent": ["error", "tab"]
 	}
 }
