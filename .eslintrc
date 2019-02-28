@@ -1,0 +1,10 @@
+{
+	"extends": "eslint-config-egg",
+	"parser": "babel-eslint",
+	"rules": {
+		"generator-star-spacing": "off",
+		"babel/generator-star-spacing": "off",
+		"linebreak-style": ["error", "windows"],
+		"indent": ["error", 2]
+	}
+}
