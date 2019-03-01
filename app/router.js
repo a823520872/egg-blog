@@ -11,8 +11,12 @@ module.exports = app => {
 	router.post('/blog', controller.blog.create);
 	router.get('/blog/:id/edit', controller.blog.edit);
 	router.post('/blog/:id', controller.blog.update);
+	router.post('/blog/:id/del', controller.blog.destroy);
 	router.get('/blog/:id', controller.blog.show);
 	router.get('/category', controller.category.index);
-	// router.post('/category', controller.category.create);
-	// router.get('/category/:id', controller.category.show);
+	router.get('/category/add', controller.category.new);
+	router.post('/category', controller.category.create);
+	router.get('/category/:id/edit', controller.category.edit);
+	router.post('/category/:id', controller.category.update);
+	router.get('/category/:id', controller.category.show);
 };
