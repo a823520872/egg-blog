@@ -103,14 +103,11 @@ class BlogController extends Controller {
 			ctx.message = '此博客不存在或已被删除。';
 			return;
 		}
-		const success = await service.blog.update(blog);
-		const list = await service.category.findByQuery();
-		await ctx.redirect('blog/list.tpl', {
-			title: '博客列表',
-			msg: `编辑${success ? '成功' : '失败'}`,
-			error: !success,
-			list,
-		});
+		const success = await service.blog.del(blog_id);
+		ctx.body = {
+			success,
+			msg: `删除${success ? '成功' : '失败'}`,
+		};
 	}
 }
 
