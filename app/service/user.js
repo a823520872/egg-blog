@@ -10,12 +10,10 @@ class UserService extends Service {
 		const success = result.affectedRows === 1;
 		return success;
 	}
-	async findByQuery() {
+	async findByQuery(query) {
 		const { app } = this;
 		const list = await app.mysql.select(tb, {
-			// where: query,
-			columns: [ 'id', 'title' ],
-			orders: [[ 't_update', 'desc' ], [ 't_create', 'desc' ], [ 'id', 'desc' ]],
+			where: query,
 			limit: 10, // 返回数据量
 			offset: 0, // 数据偏移量
 		});
